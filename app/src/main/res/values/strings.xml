@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DoctorAppointment</string>
+
+    <string-array name="arrayStartingHour">
+        <item>Starting Hour</item>
+    </string-array>
+    <string-array name="arrayEndingHour">
+        <item>Ending Hour</item>
+    </string-array>
+    <string-array name="arrayAppointmentDuration">
+        <item>Appointment Duration</item>
+    </string-array>
+    <string-array name="arrayBreakDuration">
+        <item>Break Duration</item>
+    </string-array>
+</resources>
