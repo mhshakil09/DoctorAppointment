@@ -1,17 +1,12 @@
 package com.example.doctorappointment.ui.doctor_appointment;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
 import com.example.doctorappointment.databinding.ActivityMainBinding;
 import com.example.doctorappointment.ui.api.model.doctor_appintment.DoctorAppointmentModel;
 import com.example.doctorappointment.ui.utils.Helper;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
