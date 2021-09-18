@@ -7,6 +7,9 @@
     <string-array name="arrayEndingHour">
         <item>Ending Hour</item>
     </string-array>
+    <string-array name="arrayAppointmentDay">
+        <item>Appointment Day</item>
+    </string-array>
     <string-array name="arrayAppointmentDuration">
         <item>Appointment Duration</item>
     </string-array>

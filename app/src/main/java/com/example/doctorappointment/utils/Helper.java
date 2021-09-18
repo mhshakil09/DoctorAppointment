@@ -1,4 +1,4 @@
-package com.example.doctorappointment.ui.utils;
+package com.example.doctorappointment.utils;
 
 import android.content.Context;
 import android.widget.Toast;

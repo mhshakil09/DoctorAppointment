@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:backgroundTint="@color/lightGreen"
+    android:padding="10dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_marginStart="8dp"
+        android:textSize="20sp"
+        tools:text="03:00 PM - 04:00 PM"/>
+
+</androidx.cardview.widget.CardView>

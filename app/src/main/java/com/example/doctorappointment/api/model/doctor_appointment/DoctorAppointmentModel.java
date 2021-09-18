@@ -1,8 +1,11 @@
-package com.example.doctorappointment.ui.api.model.doctor_appintment;
+package com.example.doctorappointment.api.model.doctor_appointment;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.util.List;
 
-public class DoctorAppointmentModel {
+public class DoctorAppointmentModel implements Parcelable {
     List<String> weekDays;
     String startingHour, endingHour, appointmentDuration, breakDuration;
 
@@ -12,6 +15,30 @@ public class DoctorAppointmentModel {
         this.endingHour = endingHour;
         this.appointmentDuration = appointmentDuration;
         this.breakDuration = breakDuration;
+    }
+
+    protected DoctorAppointmentModel(Parcel in) {
+        weekDays = in.createStringArrayList();
+        startingHour = in.readString();
+        endingHour = in.readString();
+        appointmentDuration = in.readString();
+        breakDuration = in.readString();
+    }
+
+    public static final Creator<DoctorAppointmentModel> CREATOR = new Creator<DoctorAppointmentModel>() {
+        @Override
+        public DoctorAppointmentModel createFromParcel(Parcel in) {
+            return new DoctorAppointmentModel(in);
+        }
+
+        @Override
+        public DoctorAppointmentModel[] newArray(int size) {
+            return new DoctorAppointmentModel[size];
+        }
+    };
+
+    public DoctorAppointmentModel() {
+
     }
 
     @Override
@@ -66,4 +93,17 @@ public class DoctorAppointmentModel {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringList(weekDays);
+        dest.writeString(startingHour);
+        dest.writeString(endingHour);
+        dest.writeString(appointmentDuration);
+        dest.writeString(breakDuration);
+    }
 }

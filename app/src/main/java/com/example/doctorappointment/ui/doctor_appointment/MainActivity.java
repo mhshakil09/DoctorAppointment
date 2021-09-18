@@ -1,13 +1,18 @@
 package com.example.doctorappointment.ui.doctor_appointment;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import com.example.doctorappointment.databinding.ActivityMainBinding;
-import com.example.doctorappointment.ui.api.model.doctor_appintment.DoctorAppointmentModel;
-import com.example.doctorappointment.ui.utils.Helper;
+import com.example.doctorappointment.api.model.doctor_appointment.DoctorAppointmentModel;
+import com.example.doctorappointment.ui.patient_appoinment.PatientActivity;
+import com.example.doctorappointment.utils.Helper;
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,8 +49,15 @@ public class MainActivity extends AppCompatActivity {
 
         binding.submitBtn.setOnClickListener(v -> {
             if (verify()) {
-                DoctorAppointmentModel bundle = new DoctorAppointmentModel(weekDays, startingHour, endingHour, appointmentDuration, breakDuration);
-                Helper.toast(this ,""+bundle.toString());
+                DoctorAppointmentModel model = new DoctorAppointmentModel(weekDays, startingHour, endingHour, appointmentDuration, breakDuration);
+                Timber.d("requestBody send %s", model.toString());
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("model", model);
+                Intent intent = new Intent(getApplicationContext(), PatientActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+
             }
         });
 
@@ -115,38 +127,38 @@ public class MainActivity extends AppCompatActivity {
 
         //region startingHour
         int startingHourSelected = binding.spinnerStartingHour.getSelectedItemPosition();
-        startingHour = binding.spinnerStartingHour.getSelectedItem().toString();
         if (startingHourSelected == 0) {
             Helper.toast(getApplicationContext(), "Please select a Starting hour");
             return false;
         }
+        startingHour = binding.spinnerStartingHour.getSelectedItem().toString();
         //endregion
 
         //region EndingHour
         int endingHourSelected = binding.spinnerEndingHour.getSelectedItemPosition();
-        endingHour = binding.spinnerEndingHour.getSelectedItem().toString();
         if (endingHourSelected == 0) {
             Helper.toast(getApplicationContext(), "Please select a Ending Hour");
             return false;
         }
+        endingHour = binding.spinnerEndingHour.getSelectedItem().toString();
         //endregion
 
         //region AppointmentDuration
         int appointmentDurationSelected = binding.spinnerAppointmentDuration.getSelectedItemPosition();
-        appointmentDuration = binding.spinnerAppointmentDuration.getSelectedItem().toString();
         if (appointmentDurationSelected == 0) {
             Helper.toast(getApplicationContext(), "Please select a Appointment Duration");
             return false;
         }
+        appointmentDuration = binding.spinnerAppointmentDuration.getSelectedItem().toString();
         //endregion
 
         //region BreakDuration
         int breakDurationSelected = binding.spinnerBreakDuration.getSelectedItemPosition();
-        breakDuration = binding.spinnerBreakDuration.getSelectedItem().toString();
         if (breakDurationSelected == 0) {
             Helper.toast(getApplicationContext(), "Please select a Break Duration");
             return false;
         }
+        breakDuration = binding.spinnerBreakDuration.getSelectedItem().toString();
         //endregion
 
         return true;
