@@ -77,11 +77,11 @@ public class PatientActivity extends AppCompatActivity {
         Pattern p = Pattern.compile("(\\d+)");
         Matcher m = p.matcher(tempStartingHour);
         if (m.find()) {
-            startingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)));
+            startingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)))+12;
         }
         m = p.matcher(tempEndingHour);
         if (m.find()) {
-            endingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)));
+            endingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)))+12;
         }
 
         m = p.matcher(tempAppointmentDuration);

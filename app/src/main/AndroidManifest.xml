@@ -14,7 +14,10 @@
             android:name=".ui.patient_appoinment.PatientActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.doctor_appointment.MainActivity"
+            android:name=".ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.doctor_appointment.DoctorActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

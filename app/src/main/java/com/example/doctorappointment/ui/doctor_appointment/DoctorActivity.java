@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+
+import com.example.doctorappointment.databinding.ActivityDoctorBinding;
 import com.example.doctorappointment.databinding.ActivityMainBinding;
 import com.example.doctorappointment.api.model.doctor_appointment.DoctorAppointmentModel;
 import com.example.doctorappointment.ui.patient_appoinment.PatientActivity;
@@ -14,14 +16,14 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity {
+public class DoctorActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityDoctorBinding binding;
 
     List<String> weekDays = new ArrayList<>();
 
     String[] startingHourList = {"Starting Hour","3pm","4pm","5pm","6pm","7pm", "8pm","9pm"};
-    String[] endingHourList = {"Ending Hour","4pm","5pm","6pm","7pm", "8pm","10pm"};
+    String[] endingHourList = {"Ending Hour","4pm","5pm","6pm","7pm", "8pm","9pm","10pm"};
     String[] appointmentDurationList = {"Select Appointment Duration", "10min","15min","20min","25min","30min"};
     String[] breakDurationList = {"Select Break Duration", "5min","10min","15min","20min","25min", "30min"};
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityDoctorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerBreakDuration.setAdapter(spinnerArrayAdapter);
     }
-    
+
     private boolean verify() {
         weekDays.clear();
         fetchWeekDays();
