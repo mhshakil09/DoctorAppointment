@@ -1,6 +1,7 @@
 package com.example.doctorappointment.ui.patient_appoinment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +36,8 @@ public class PatientActivity extends AppCompatActivity {
     List<String> availableDaysList = new ArrayList<>();
     List<String> availableTimeSlotList = new ArrayList<>();
 
-    private String selectedDay = "";
+    String selectedDay = "";
+    String selectedSlot = "";
 
     private PatientAdapter dataAdapter = new PatientAdapter();
 
@@ -60,7 +62,11 @@ public class PatientActivity extends AppCompatActivity {
     }
 
     private void initClickListener() {
-
+        binding.submitBtn.setOnClickListener(v -> {
+            if (verify()) {
+                Helper.toast(getApplicationContext(), "Your appointment is on:\n"+selectedDay+", @"+selectedSlot);
+            }
+        });
     }
 
     private void initTimeSlot() throws ParseException {
@@ -148,7 +154,7 @@ public class PatientActivity extends AppCompatActivity {
             } else {
                 temp = "true";
                 Timber.d("requestBody true %s - %s", tempCurr, tempEnd);
-                String day = day1 + " - " + day2 + " -> ";
+                String day = day1 + " - " + day2;
                 results.add(day);
             }
             //testing end  -------------------
@@ -163,10 +169,12 @@ public class PatientActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, RecyclerView.VERTICAL, false));
         dataAdapter = new PatientAdapter(this, availableTimeSlotList);
         dataAdapter.setClickListener((view, position) ->
-                Helper.toast(getApplicationContext(),"clicked items position is "+position+" -> "+availableTimeSlotList.get(position))
+                //Helper.toast(getApplicationContext(),"clicked items position is "+position+" -> "+availableTimeSlotList.get(position))
+                selectedSlot = availableTimeSlotList.get(position)
         );
         recyclerView.setAdapter(dataAdapter);
     }
@@ -185,12 +193,17 @@ public class PatientActivity extends AppCompatActivity {
 
     private Boolean verify() {
 
-        int availableHourSelected = binding.spinnerAvailableDays.getSelectedItemPosition();
-        if (availableHourSelected == 0) {
-            Helper.toast(getApplicationContext(), "Please select a Starting hour");
+        int tempSelectedDays = binding.spinnerAvailableDays.getSelectedItemPosition();
+        if (tempSelectedDays == 0) {
+            Helper.toast(getApplicationContext(), "Please select a Day");
             return false;
         }
         selectedDay = binding.spinnerAvailableDays.getSelectedItem().toString();
+
+        if (selectedSlot.isEmpty()) {
+            Helper.toast(getApplicationContext(), "Please select a Time Slot");
+            return false;
+        }
 
         return true;
     }

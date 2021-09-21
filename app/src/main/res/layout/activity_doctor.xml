@@ -19,6 +19,7 @@
             android:text="Doctor! Please fill this form"
             android:textSize="24sp"
             android:layout_marginTop="8dp"
+            android:textColor="@color/purple_700"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="Please select your available days"
                 android:textSize="16sp"
+                android:textColor="@color/black_80"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />
@@ -99,22 +101,10 @@
                 android:layout_height="wrap_content"
                 android:text="Please select your available Hours"
                 android:textSize="16sp"
+                android:textColor="@color/black_80"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinnerStartingHour"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:overlapAnchor="false"
-                android:spinnerMode="dropdown"
-                android:entries="@array/arrayStartingHour"
-                app:layout_constraintTop_toBottomOf="@id/hourTV"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/hourDivider"
-                android:layout_margin="1dp"
-                />
 
             <TextView
                 android:id="@+id/hourDivider"
@@ -122,25 +112,39 @@
                 android:layout_height="wrap_content"
                 android:text="-"
                 android:textSize="30sp"
+                android:layout_marginTop="8dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintTop_toBottomOf="@id/hourTV"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/spinnerStartingHour"
-                app:layout_constraintEnd_toStartOf="@id/spinnerEndingHour"/>
+                app:layout_constraintStart_toEndOf="@id/startHourBtn"
+                app:layout_constraintEnd_toStartOf="@id/endHourBtn"/>
 
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/spinnerEndingHour"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startHourBtn"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:overlapAnchor="false"
-                android:spinnerMode="dropdown"
-                android:entries="@array/arrayEndingHour"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/hourTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/hourDivider"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/endHourBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintTop_toBottomOf="@id/hourTV"
                 app:layout_constraintStart_toEndOf="@id/hourDivider"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="1dp"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -157,9 +161,10 @@
                 android:id="@+id/appointmentDurationTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please select your available Hours"
+                android:text="Please select Appointment Duration"
                 android:textSize="16sp"
                 android:layout_marginTop="12dp"
+                android:textColor="@color/black_80"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -170,11 +175,11 @@
                 android:layout_height="40dp"
                 android:overlapAnchor="false"
                 android:spinnerMode="dropdown"
+                android:layout_marginTop="4dp"
                 android:entries="@array/arrayAppointmentDuration"
                 app:layout_constraintTop_toBottomOf="@id/appointmentDurationTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="1dp" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,9 +196,10 @@
                 android:id="@+id/breakDurationTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Please select your available Hours"
+                android:text="Please select Break Duration"
                 android:textSize="16sp"
                 android:layout_marginTop="12dp"
+                android:textColor="@color/black_80"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
@@ -204,11 +210,11 @@
                 android:layout_height="40dp"
                 android:overlapAnchor="false"
                 android:spinnerMode="dropdown"
+                android:layout_marginTop="4dp"
                 android:entries="@array/arrayBreakDuration"
                 app:layout_constraintTop_toBottomOf="@id/breakDurationTV"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="1dp" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

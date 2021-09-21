@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:backgroundTint="@color/lightGreen"
+    android:backgroundTint="@color/white"
     android:padding="10dp"
+    app:cardCornerRadius="4dp"
+    android:id="@+id/itemSlot"
+    android:layout_margin="10dp"
     android:layout_marginBottom="12dp">
 
     <TextView
         android:id="@+id/titleTV"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        android:layout_marginStart="8dp"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:textColor="@color/black_80"
         tools:text="03:00 PM - 04:00 PM"/>
 
 </androidx.cardview.widget.CardView>
