@@ -231,7 +231,7 @@ public class DoctorActivity extends AppCompatActivity implements RangeTimePicker
         binding.startHourBtn.setText(startText);
 
         String endText;
-        if (hourStart>12) {
+        if (hourEnd>12) {
             endText = (hourEnd-12)+":"+minuteEnd+ "pm";
         } else {
             endText = (hourEnd)+":"+minuteEnd+ "am";
