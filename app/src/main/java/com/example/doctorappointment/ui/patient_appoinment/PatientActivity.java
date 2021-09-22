@@ -72,22 +72,35 @@ public class PatientActivity extends AppCompatActivity {
     private void initTimeSlot() throws ParseException {
 
         String tempStartingHour = model.getStartingHour();
+        String tempStartingMinute = model.getStartingMinute();
         String tempEndingHour = model.getEndingHour();
+        String tempEndingMinute = model.getEndingMinute();
         String tempAppointmentDuration = model.getAppointmentDuration();
         String tempBreakDuration = model.getBreakDuration();
         int startingHour = 3;
         int endingHour = 4;
+        int startingMinute = 0;
+        int endingMinute = 0;
         int appointmentDuration = 10;
         int breakDuration = 5;
 
         Pattern p = Pattern.compile("(\\d+)");
         Matcher m = p.matcher(tempStartingHour);
         if (m.find()) {
-            startingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)))+12;
+            startingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)));
         }
+        m = p.matcher(tempStartingMinute);
+        if (m.find()) {
+            startingMinute = Integer.parseInt(Objects.requireNonNull(m.group(1)));
+        }
+
         m = p.matcher(tempEndingHour);
         if (m.find()) {
-            endingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)))+12;
+            endingHour = Integer.parseInt(Objects.requireNonNull(m.group(1)));
+        }
+        m = p.matcher(tempEndingMinute);
+        if (m.find()) {
+            endingMinute = Integer.parseInt(Objects.requireNonNull(m.group(1)));
         }
 
         m = p.matcher(tempAppointmentDuration);
@@ -99,25 +112,28 @@ public class PatientActivity extends AppCompatActivity {
             breakDuration = Integer.parseInt(Objects.requireNonNull(m.group(1)));
         }
 
-        availableTimeSlotList = getTimeSet(startingHour, endingHour, appointmentDuration, breakDuration);
+        Timber.d("requestBody slotting data: startingHour=%s, startingMinute=%s, endingHour=%s, endingMinute=%s",
+                startingHour, startingMinute, endingHour, endingMinute);
+        availableTimeSlotList.clear();
+        availableTimeSlotList = getTimeSet(startingHour, startingMinute, endingHour, endingMinute, appointmentDuration, breakDuration);
 
 
         initRecyclerView();
     }
 
-    private ArrayList<String> getTimeSet(int startingHour, int endingHour, int appointmentDuration, int breakDuration) throws ParseException {
+    private ArrayList<String> getTimeSet(int startingHour, int startingMinute, int endingHour, int endingMinute, int appointmentDuration, int breakDuration) throws ParseException {
         ArrayList results = new ArrayList<String>();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
         SimpleDateFormat sdf1 = new SimpleDateFormat("hh");
 
         Calendar calendar = new GregorianCalendar();
         calendar.set(Calendar.HOUR_OF_DAY, startingHour);// what should be the default?
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MINUTE, startingMinute);
         calendar.set(Calendar.SECOND, 0);
 
         Calendar endingTime = new GregorianCalendar();
         endingTime.set(Calendar.HOUR_OF_DAY, endingHour);// what should be the default?
-        endingTime.set(Calendar.MINUTE, 0);
+        endingTime.set(Calendar.MINUTE, endingMinute);
         endingTime.set(Calendar.SECOND, 0);
 
         for (int i = 0; i < 15; i++) {
@@ -144,16 +160,16 @@ public class PatientActivity extends AppCompatActivity {
             long hours = (int) ((difference - (1000*60*60*24*days)) / (1000*60*60));
             long min = (int) (difference - (1000*60*60*24*days) - (1000*60*60*hours)) / (1000*60);
             hours = (hours < 0 ? -hours : hours);
-            Timber.d("requestBody  ======= Hours %s", hours);
-            Timber.d("requestBody  ======= Mints %s", min);
+            //Timber.d("requestBody  ======= Hours %s", hours);
+            //Timber.d("requestBody  ======= Mints %s", min);
 
-            if (min < 0) {
+            if (min < 0 || (tempCurr > tempEnd)) {
                 temp = "false";
-                Timber.d("requestBody false  %s - %s", tempCurr, tempEnd);
+                //Timber.d("requestBody false  %s - %s", tempCurr, tempEnd);
                 break;
             } else {
                 temp = "true";
-                Timber.d("requestBody true %s - %s", tempCurr, tempEnd);
+                //Timber.d("requestBody true %s - %s", tempCurr, tempEnd);
                 String day = day1 + " - " + day2;
                 results.add(day);
             }

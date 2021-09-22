@@ -33,16 +33,18 @@ public class DoctorActivity extends AppCompatActivity implements RangeTimePicker
 
     String startingHour;
     String endingHour;
+    String startingMinute;
+    String endingMinute;
     String appointmentDuration;
     String breakDuration;
 
     int defaultStartHour = 15;
-    int defaultStartMinute = 0;
+    int defaultStartMinute = 00;
     int selectedStartHour = defaultStartHour;
     int selectedStartMinute = defaultStartMinute;
 
     int defaultEndHour = 22;
-    int defaultEndMinute = 0;
+    int defaultEndMinute = 00;
     int selectedEndHour = defaultEndHour;
     int selectedEndMinute = defaultEndMinute;
 
@@ -78,7 +80,7 @@ public class DoctorActivity extends AppCompatActivity implements RangeTimePicker
 
         binding.submitBtn.setOnClickListener(v -> {
             if (verify()) {
-                DoctorAppointmentModel model = new DoctorAppointmentModel(weekDays, startingHour, endingHour, appointmentDuration, breakDuration);
+                DoctorAppointmentModel model = new DoctorAppointmentModel(weekDays, startingHour, startingMinute, endingHour, endingMinute, appointmentDuration, breakDuration);
                 Timber.d("requestBody send %s", model.toString());
 
                 Bundle bundle = new Bundle();
@@ -141,22 +143,17 @@ public class DoctorActivity extends AppCompatActivity implements RangeTimePicker
 
 
         //region startingHour
-        int startingHourSelected = selectedStartHour;
-        if (startingHourSelected == 0) {
-            Helper.toast(getApplicationContext(), "Please select a Starting hour");
-            return false;
-        }
         startingHour = selectedStartHour+"";
+        startingMinute = selectedStartMinute+"";
         //endregion
 
         //region EndingHour
-        int endingHourSelected = selectedEndHour;
-        if (endingHourSelected == 0) {
-            Helper.toast(getApplicationContext(), "Please select a Ending Hour");
-            return false;
-        }
         endingHour = selectedEndHour+"";
+        endingMinute = selectedEndMinute+"";
         //endregion
+
+        Timber.d("requestBody selectedTime, startingHour=%s, startingMinute=%s, endingHour=%s, endingMinute=%s",
+                startingHour, startingMinute, endingHour, endingMinute);
 
         //region AppointmentDuration
         int appointmentDurationSelected = binding.spinnerAppointmentDuration.getSelectedItemPosition();

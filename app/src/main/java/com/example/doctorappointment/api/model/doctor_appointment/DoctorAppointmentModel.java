@@ -7,12 +7,14 @@ import java.util.List;
 
 public class DoctorAppointmentModel implements Parcelable {
     List<String> weekDays;
-    String startingHour, endingHour, appointmentDuration, breakDuration;
+    String startingHour, startingMinute, endingHour, endingMinute, appointmentDuration, breakDuration;
 
-    public DoctorAppointmentModel(List<String> weekDays, String startingHour, String endingHour, String appointmentDuration, String breakDuration) {
+    public DoctorAppointmentModel(List<String> weekDays, String startingHour,String startingMinute, String endingHour,  String endingMinute, String appointmentDuration, String breakDuration) {
         this.weekDays = weekDays;
         this.startingHour = startingHour;
+        this.startingMinute = startingMinute;
         this.endingHour = endingHour;
+        this.endingMinute = endingMinute;
         this.appointmentDuration = appointmentDuration;
         this.breakDuration = breakDuration;
     }
@@ -20,7 +22,9 @@ public class DoctorAppointmentModel implements Parcelable {
     protected DoctorAppointmentModel(Parcel in) {
         weekDays = in.createStringArrayList();
         startingHour = in.readString();
+        startingMinute = in.readString();
         endingHour = in.readString();
+        endingMinute = in.readString();
         appointmentDuration = in.readString();
         breakDuration = in.readString();
     }
@@ -46,7 +50,9 @@ public class DoctorAppointmentModel implements Parcelable {
         return "DoctorAppointmentModel{" +
                 "weekDays=" + weekDays +
                 ", startingHour='" + startingHour + '\'' +
+                ", startingMinute='" + startingMinute + '\'' +
                 ", endingHour='" + endingHour + '\'' +
+                ", endingMinute='" + endingMinute + '\'' +
                 ", appointmentDuration='" + appointmentDuration + '\'' +
                 ", breakDuration='" + breakDuration + '\'' +
                 '}';
@@ -68,12 +74,28 @@ public class DoctorAppointmentModel implements Parcelable {
         this.startingHour = startingHour;
     }
 
+    public String getStartingMinute() {
+        return startingMinute;
+    }
+
+    public void setStartingMinute(String startingMinute) {
+        this.startingMinute = startingMinute;
+    }
+
     public String getEndingHour() {
         return endingHour;
     }
 
     public void setEndingHour(String endingHour) {
         this.endingHour = endingHour;
+    }
+
+    public String getEndingMinute() {
+        return endingMinute;
+    }
+
+    public void setEndingMinute(String endingMinute) {
+        this.endingMinute = endingMinute;
     }
 
     public String getAppointmentDuration() {
@@ -92,7 +114,6 @@ public class DoctorAppointmentModel implements Parcelable {
         this.breakDuration = breakDuration;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -102,7 +123,9 @@ public class DoctorAppointmentModel implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeStringList(weekDays);
         dest.writeString(startingHour);
+        dest.writeString(startingMinute);
         dest.writeString(endingHour);
+        dest.writeString(endingMinute);
         dest.writeString(appointmentDuration);
         dest.writeString(breakDuration);
     }
