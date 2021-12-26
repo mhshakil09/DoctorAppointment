@@ -6,10 +6,21 @@
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/drawable/bg_option_selected.xml" value="0.3703125" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/drawable/bg_option_unselected.xml" value="0.3703125" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_doctor.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_doctor_list.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_doctor_schedule_list.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_home.xml" value="0.34010416666666665" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_patient.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_patient_details.xml" value="0.34010416666666665" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_patient_list.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/activity_set_schedule.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/fragment_bottom_sheet_appointment_duration.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_doctor_schedule.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_layout.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_patient.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_patient_details.xml" value="0.3541666666666667" />
         <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_spinner_item.xml" value="0.3541666666666667" />
+        <entry key="..\:/AndroidProjects/DoctorAppointment/app/src/main/res/layout/item_view_time_slot.xml" value="0.3541666666666667" />
       </map>
     </option>
   </component>

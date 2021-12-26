@@ -11,13 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DoctorAppointment">
         <activity
-            android:name=".ui.patient_appoinment.PatientActivity"
-            android:exported="true" />
+            android:name=".ui.doctor_schedule_list.DoctorScheduleListActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true" />
+            android:name=".ui.set_schedule.SetScheduleActivity"
+            android:exported="false" />
         <activity
-            android:name=".ui.doctor_appointment.DoctorActivity"
+            android:name=".ui.patient_details.PatientDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.patient_list.PatientListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home_screen.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.patient_appoinment.PatientActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.doctor_appointment.DoctorActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

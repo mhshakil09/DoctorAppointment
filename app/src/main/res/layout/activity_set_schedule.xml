@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context=".ui.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Doctor! Please fill this form"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/purple_700"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/weekdaysLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/titleTV"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/weekdaysTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select your available days"
+                android:textSize="16sp"
+                android:textColor="@color/black_80"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <GridLayout
+                android:id="@+id/weekdaysOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/weekdaysTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <CheckBox
+                    android:id="@+id/satDay"
+                    android:text="Saturday"/>
+
+                <CheckBox
+                    android:id="@+id/sunDay"
+                    android:text="Sunday"/>
+
+                <CheckBox
+                    android:id="@+id/monDay"
+                    android:text="Monday"/>
+
+                <CheckBox
+                    android:id="@+id/tueDay"
+                    android:text="Tuesday"/>
+
+                <CheckBox
+                    android:id="@+id/wedDay"
+                    android:text="Wednesday"/>
+
+                <CheckBox
+                    android:id="@+id/thursDay"
+                    android:text="Thursday"/>
+
+                <CheckBox
+                    android:id="@+id/friDay"
+                    android:text="Friday"/>
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/availableHoursLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@id/weekdaysLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/hourTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select your available Hours"
+                android:textSize="16sp"
+                android:textColor="@color/black_80"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/hourDivider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textSize="30sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintTop_toBottomOf="@id/hourTV"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/startHourBtn"
+                app:layout_constraintEnd_toStartOf="@id/endHourBtn"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startHourBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Start"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@id/hourTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/hourDivider"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/endHourBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/hourTV"
+                app:layout_constraintStart_toEndOf="@id/hourDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/appointmentDurationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/availableHoursLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/appointmentDurationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select Appointment Duration"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/black_80"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerAppointmentDuration"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="4dp"
+                android:entries="@array/arrayAppointmentDuration"
+                app:layout_constraintTop_toBottomOf="@id/appointmentDurationTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/breakDurationLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/appointmentDurationLayout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/breakDurationTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Please select Break Duration"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/black_80"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerBreakDuration"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown"
+                android:layout_marginTop="4dp"
+                android:entries="@array/arrayBreakDuration"
+                app:layout_constraintTop_toBottomOf="@id/breakDurationTV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitBtn"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Submit"
+            app:layout_constraintTop_toBottomOf="@id/breakDurationLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:backgroundTint="@color/white"
+    android:padding="10dp"
+    app:cardCornerRadius="4dp"
+    android:id="@+id/patientSlot"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_start_time_black_24dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/weekday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/dayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="28 September, 2021"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_end_time_black_24dp"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
