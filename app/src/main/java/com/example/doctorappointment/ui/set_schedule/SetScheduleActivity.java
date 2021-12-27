@@ -12,6 +12,7 @@ import com.example.doctorappointment.databinding.ActivityHomeBinding;
 import com.example.doctorappointment.api.model.doctor_appointment.DoctorAppointmentModel;
 import com.example.doctorappointment.ui.patient_appoinment.PatientActivity;
 import com.example.doctorappointment.utils.Helper;
+import com.example.doctorappointment.utils.SessionManager;
 import com.mcsoft.timerangepickerdialog.RangeTimePickerDialog;
 import com.example.doctorappointment.R;
 
@@ -38,12 +39,12 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
     String appointmentDuration;
     String breakDuration;
 
-    int defaultStartHour = 15;
+    int defaultStartHour = 12;
     int defaultStartMinute = 00;
     int selectedStartHour = defaultStartHour;
     int selectedStartMinute = defaultStartMinute;
 
-    int defaultEndHour = 22;
+    int defaultEndHour = 15;
     int defaultEndMinute = 00;
     int selectedEndHour = defaultEndHour;
     int selectedEndMinute = defaultEndMinute;
@@ -53,6 +54,7 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
         super.onCreate(savedInstanceState);
         binding = ActivitySetScheduleBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SessionManager.init(this);
 
         fetchAppointmentDuration();
         fetchBreakDuration();
@@ -81,10 +83,28 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
                 DoctorAppointmentModel model = new DoctorAppointmentModel(weekDays, startingHour, startingMinute, endingHour, endingMinute, appointmentDuration, breakDuration);
                 Timber.d("requestBody send %s", model.toString());
 
+                SessionManager.setStartingHour(this, startingHour);
+                SessionManager.setStartingMinute(this, startingMinute);
+                SessionManager.setEndingHour(this, endingHour);
+                SessionManager.setEndingMinute(this, endingMinute);
+                SessionManager.setAppointmentDuration(this, appointmentDuration);
+                SessionManager.setBreakDuration(this, breakDuration);
+
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("model", model);
 
                 Helper.toast(this, "Work in progress");
+                Helper.toast(this,
+                    "Saturday: "+SessionManager.getSaturday()
+                            +"\nSunday: "+SessionManager.getSunday()
+                            +"\nMonday: "+SessionManager.getMonday()
+                            +"\nTuesday: "+SessionManager.getTuesday()
+                            +"\nWednesday: "+SessionManager.getWednesday()
+                            +"\nThursday: "+SessionManager.getThursday()
+                            +"\nFriday: "+SessionManager.getFriday()
+                            +"\nFrom: "+SessionManager.getStartingHour()+":"+SessionManager.getStartingMinute()+" - to: "+SessionManager.getEndingHour()+":"+SessionManager.getEndingMinute()
+                            +"\nAppointment duration: "+SessionManager.getAppointmentDuration()
+                            +"\nBreak duration: "+SessionManager.getBreakDuration());
 
             }
         });
@@ -94,24 +114,31 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
     private void fetchWeekDays() {
         if (binding.satDay.isChecked()) {
             weekDays.add("saturday");
+            SessionManager.setSaturday(this, "y");
         }
         if (binding.sunDay.isChecked()) {
             weekDays.add("sunday");
+            SessionManager.setSunday(this, "y");
         }
         if (binding.monDay.isChecked()) {
             weekDays.add("monday");
+            SessionManager.setMonday(this, "y");
         }
         if (binding.tueDay.isChecked()) {
             weekDays.add("tuesday");
+            SessionManager.setTuesday(this, "y");
         }
         if (binding.wedDay.isChecked()) {
             weekDays.add("wednesday");
+            SessionManager.setWednesday(this, "y");
         }
         if (binding.thursDay.isChecked()) {
             weekDays.add("thursday");
+            SessionManager.setThursday(this, "y");
         }
         if (binding.friDay.isChecked()) {
             weekDays.add("friday");
+            SessionManager.setFriday(this, "y");
         }
     }
 
@@ -222,7 +249,11 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
         String startText;
         if (hourStart>12) {
             startText = (hourStart-12)+":"+minuteStart+ "pm";
-        } else {
+        }
+        else if (hourStart == 12) {
+            startText = (hourStart)+":"+minuteStart+ "pm";
+        }
+        else {
             startText = (hourStart)+":"+minuteStart+ "am";
         }
         binding.startHourBtn.setText(startText);
@@ -230,7 +261,11 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
         String endText;
         if (hourEnd>12) {
             endText = (hourEnd-12)+":"+minuteEnd+ "pm";
-        } else {
+        }
+        else if (hourEnd == 12) {
+            endText = (hourEnd)+":"+minuteEnd+ "pm";
+        }
+        else {
             endText = (hourEnd)+":"+minuteEnd+ "am";
         }
         binding.endHourBtn.setText(endText);

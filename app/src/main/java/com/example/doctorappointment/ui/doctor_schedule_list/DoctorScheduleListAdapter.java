@@ -34,7 +34,7 @@ public class DoctorScheduleListAdapter extends RecyclerView.Adapter<DoctorSchedu
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_view_patient, parent, false);
+        View view = mInflater.inflate(R.layout.item_view_time_slot, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,12 +42,12 @@ public class DoctorScheduleListAdapter extends RecyclerView.Adapter<DoctorSchedu
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String text = mData.get(position);
-        holder.patientNameTV.setText(text);
+        holder.timeSlotTV.setText(text);
 
         if (selectedPosition == position) {
-            holder.patientSlot.setBackground(ContextCompat.getDrawable(holder.patientSlot.getContext(), R.drawable.bg_option_selected));
+            holder.timeSlot.setBackground(ContextCompat.getDrawable(holder.timeSlot.getContext(), R.drawable.bg_option_selected));
         } else {
-            holder.patientSlot.setBackground(ContextCompat.getDrawable(holder.patientSlot.getContext(), R.drawable.bg_option_unselected));
+            holder.timeSlot.setBackground(ContextCompat.getDrawable(holder.timeSlot.getContext(), R.drawable.bg_option_unselected));
         }
     }
 
@@ -60,13 +60,13 @@ public class DoctorScheduleListAdapter extends RecyclerView.Adapter<DoctorSchedu
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView patientNameTV;
-        View patientSlot;
+        TextView timeSlotTV;
+        View timeSlot;
 
         ViewHolder(View itemView) {
             super(itemView);
-            patientNameTV = itemView.findViewById(R.id.patientNameTV);
-            patientSlot = itemView.findViewById(R.id.patientSlot);
+            timeSlotTV = itemView.findViewById(R.id.timeSlotTV);
+            timeSlot = itemView.findViewById(R.id.timeSlot);
             itemView.setOnClickListener(this);
         }
 

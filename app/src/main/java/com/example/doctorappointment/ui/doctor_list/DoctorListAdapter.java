@@ -10,19 +10,20 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctorappointment.R;
+import com.example.doctorappointment.api.model.doctor_weekday_list.DoctorWeekdayListModel;
 
 import java.util.List;
 
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<DoctorWeekdayListModel> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     int selectedPosition = -1;
 
     // data is passed into the constructor
-    DoctorListAdapter(Context context, List<String> data) {
+    DoctorListAdapter(Context context, List<DoctorWeekdayListModel> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -34,20 +35,22 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_view_patient, parent, false);
+        View view = mInflater.inflate(R.layout.item_view_doctor_schedule, parent, false);
         return new ViewHolder(view);
     }
 
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String text = mData.get(position);
-        holder.patientNameTV.setText(text);
+        String text = mData.get(position).getWeekDay();
+        holder.weekDay.setText(text);
+        text = mData.get(position).getWeekDayDetails();
+        holder.weekDayDetails.setText(text);
 
         if (selectedPosition == position) {
-            holder.patientSlot.setBackground(ContextCompat.getDrawable(holder.patientSlot.getContext(), R.drawable.bg_option_selected));
+            holder.timeSlot.setBackground(ContextCompat.getDrawable(holder.timeSlot.getContext(), R.drawable.bg_option_selected));
         } else {
-            holder.patientSlot.setBackground(ContextCompat.getDrawable(holder.patientSlot.getContext(), R.drawable.bg_option_unselected));
+            holder.timeSlot.setBackground(ContextCompat.getDrawable(holder.timeSlot.getContext(), R.drawable.bg_option_unselected));
         }
     }
 
@@ -60,13 +63,15 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView patientNameTV;
-        View patientSlot;
+        TextView weekDay;
+        TextView weekDayDetails;
+        View timeSlot;
 
         ViewHolder(View itemView) {
             super(itemView);
-            patientNameTV = itemView.findViewById(R.id.patientNameTV);
-            patientSlot = itemView.findViewById(R.id.patientSlot);
+            weekDay = itemView.findViewById(R.id.weekDay);
+            weekDayDetails = itemView.findViewById(R.id.weekDayDetails);
+            timeSlot = itemView.findViewById(R.id.timeSlot);
             itemView.setOnClickListener(this);
         }
 
@@ -82,7 +87,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.Vi
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return mData.get(id).getWeekDay();
     }
 
     // allows clicks events to be caught

@@ -2,7 +2,9 @@ package com.example.doctorappointment.ui.home_screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.doctorappointment.R;
@@ -23,12 +25,16 @@ import timber.log.Timber;
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding binding;
+    SharedPreferences sharedpreferences;
+    public static final String SHARED_PREFS = "shared_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         initClickListener();
 

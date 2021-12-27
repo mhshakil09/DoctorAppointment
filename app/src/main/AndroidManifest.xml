@@ -40,6 +40,9 @@
         <activity
             android:name=".ui.doctor_appointment.DoctorActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.doctor_list.DoctorListActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
