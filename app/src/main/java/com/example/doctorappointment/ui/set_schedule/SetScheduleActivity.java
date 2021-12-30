@@ -29,8 +29,8 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
 
     String[] startingHourList = {"Starting Hour","3pm","4pm","5pm","6pm","7pm", "8pm","9pm"};
     String[] endingHourList = {"Ending Hour","4pm","5pm","6pm","7pm", "8pm","9pm","10pm"};
-    String[] appointmentDurationList = {"Select Appointment Duration", "10min","15min","20min","25min","30min"};
-    String[] breakDurationList = {"Select Break Duration", "5min","10min","15min","20min","25min", "30min"};
+    String[] appointmentDurationList = {"Select Appointment Duration", "10","15","20","25","30"};
+    String[] breakDurationList = {"Select Break Duration", "5","10","15","20","25", "30"};
 
     String startingHour;
     String endingHour;
@@ -60,11 +60,31 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
         fetchBreakDuration();
 
         initClickListener();
+        initSessionManagerData();
 
         //binding.startHourBtn.setText(defaultStartHour-12+"pm");
         //binding.endHourBtn.setText(defaultEndHour-12+"pm");
         initTextOfButton(defaultStartHour, defaultStartMinute, defaultEndHour, defaultEndMinute);
     }
+
+    private void initSessionManagerData() {
+        SessionManager.setSaturday(this, "n");
+        SessionManager.setSunday(this, "n");
+        SessionManager.setMonday(this, "n");
+        SessionManager.setTuesday(this, "n");
+        SessionManager.setWednesday(this, "n");
+        SessionManager.setThursday(this, "n");
+        SessionManager.setFriday(this, "n");
+
+        SessionManager.setStartingHour(this, String.valueOf(defaultStartHour));
+        SessionManager.setStartingMinute(this, String.valueOf(defaultStartMinute));
+        SessionManager.setEndingHour(this, String.valueOf(defaultEndHour));
+        SessionManager.setEndingMinute(this, String.valueOf(defaultEndMinute));
+
+        SessionManager.setAppointmentDuration(this, "0");
+        SessionManager.setBreakDuration(this, "0");
+    }
+
 
     private void initClickListener() {
 
@@ -93,9 +113,10 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("model", model);
 
-                Helper.toast(this, "Work in progress");
-                Helper.toast(this,
-                    "Saturday: "+SessionManager.getSaturday()
+//                Helper.toast(this, "Work in progress");
+//                Helper.toast(this,
+                Timber.d(
+                    "requestBody Saturday: "+SessionManager.getSaturday()
                             +"\nSunday: "+SessionManager.getSunday()
                             +"\nMonday: "+SessionManager.getMonday()
                             +"\nTuesday: "+SessionManager.getTuesday()
