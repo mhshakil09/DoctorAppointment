@@ -183,6 +183,7 @@ public class PatientActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
 
+        Timber.d("requestBody TimeSlot -> %s", availableTimeSlotList);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));

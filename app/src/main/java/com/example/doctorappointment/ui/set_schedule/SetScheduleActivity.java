@@ -39,12 +39,12 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
     String appointmentDuration;
     String breakDuration;
 
-    int defaultStartHour = 12;
+    int defaultStartHour = 15;
     int defaultStartMinute = 00;
     int selectedStartHour = defaultStartHour;
     int selectedStartMinute = defaultStartMinute;
 
-    int defaultEndHour = 15;
+    int defaultEndHour = 18;
     int defaultEndMinute = 00;
     int selectedEndHour = defaultEndHour;
     int selectedEndMinute = defaultEndMinute;
@@ -116,16 +116,16 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
 //                Helper.toast(this, "Work in progress");
 //                Helper.toast(this,
                 Timber.d(
-                    "requestBody Saturday: "+SessionManager.getSaturday()
-                            +"\nSunday: "+SessionManager.getSunday()
-                            +"\nMonday: "+SessionManager.getMonday()
-                            +"\nTuesday: "+SessionManager.getTuesday()
-                            +"\nWednesday: "+SessionManager.getWednesday()
-                            +"\nThursday: "+SessionManager.getThursday()
-                            +"\nFriday: "+SessionManager.getFriday()
-                            +"\nFrom: "+SessionManager.getStartingHour()+":"+SessionManager.getStartingMinute()+" - to: "+SessionManager.getEndingHour()+":"+SessionManager.getEndingMinute()
-                            +"\nAppointment duration: "+SessionManager.getAppointmentDuration()
-                            +"\nBreak duration: "+SessionManager.getBreakDuration());
+                        "requestBody Saturday: "+SessionManager.getSaturday()
+                                +"\nSunday: "+SessionManager.getSunday()
+                                +"\nMonday: "+SessionManager.getMonday()
+                                +"\nTuesday: "+SessionManager.getTuesday()
+                                +"\nWednesday: "+SessionManager.getWednesday()
+                                +"\nThursday: "+SessionManager.getThursday()
+                                +"\nFriday: "+SessionManager.getFriday()
+                                +"\nFrom: "+SessionManager.getStartingHour()+":"+SessionManager.getStartingMinute()+" - to: "+SessionManager.getEndingHour()+":"+SessionManager.getEndingMinute()
+                                +"\nAppointment duration: "+SessionManager.getAppointmentDuration()
+                                +"\nBreak duration: "+SessionManager.getBreakDuration());
 
             }
         });
@@ -268,11 +268,11 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
 
     private void initTextOfButton(int hourStart, int minuteStart, int hourEnd, int minuteEnd) {
         String startText;
-        if (hourStart>12) {
-            startText = (hourStart-12)+":"+minuteStart+ "pm";
-        }
-        else if (hourStart == 12) {
+        if (hourStart == 12) {
             startText = (hourStart)+":"+minuteStart+ "pm";
+        }
+        else if (hourStart>12) {
+            startText = (hourStart-12)+":"+minuteStart+ "pm";
         }
         else {
             startText = (hourStart)+":"+minuteStart+ "am";
@@ -280,11 +280,11 @@ public class SetScheduleActivity extends AppCompatActivity implements RangeTimeP
         binding.startHourBtn.setText(startText);
 
         String endText;
-        if (hourEnd>12) {
-            endText = (hourEnd-12)+":"+minuteEnd+ "pm";
-        }
-        else if (hourEnd == 12) {
+        if (hourEnd == 12) {
             endText = (hourEnd)+":"+minuteEnd+ "pm";
+        }
+        else if (hourEnd>12) {
+            endText = (hourEnd-12)+":"+minuteEnd+ "pm";
         }
         else {
             endText = (hourEnd)+":"+minuteEnd+ "am";

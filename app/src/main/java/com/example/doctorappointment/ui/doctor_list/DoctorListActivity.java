@@ -16,8 +16,13 @@ import com.example.doctorappointment.ui.patient_list.PatientListAdapter;
 import com.example.doctorappointment.utils.Helper;
 import com.example.doctorappointment.utils.SessionManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import timber.log.Timber;
 
 public class DoctorListActivity extends AppCompatActivity {
 
@@ -33,8 +38,87 @@ public class DoctorListActivity extends AppCompatActivity {
 
         SessionManager.init(this);
 
-        initWeekDayList();
+        getSystemDate();
+
+//        initWeekDayList();
         initRecyclerView();
+    }
+
+    private void setWeekDayList(String day, Date date) {
+
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy");
+        String formattedDate = df.format(date);
+        Timber.d("requestBody date is: %s", formattedDate);
+
+        weekDayList.add(new DoctorWeekdayListModel(day, formattedDate));
+    }
+
+    void checkDate(Date date) {
+        Timber.d("requestBody Check:     " + date);
+//        Date dt = new Date();
+//        String tempDay = dt.toString().substring(0, 3);
+        String tempDay = date.toString().substring(0, 3);
+        while (true){
+            if (tempDay.contains("Sat") && SessionManager.getSaturday().equals("y")) {
+                Timber.d("requestBody match Sat");
+
+                setWeekDayList("Saturday", date);
+                break;
+            } else  if(tempDay.contains("Sun") && SessionManager.getSunday().equals("y")) {
+                Timber.d("requestBody match Sun");
+
+                setWeekDayList("Sunday", date);
+                break;
+            } else  if(tempDay.contains("Mon") && SessionManager.getMonday().equals("y")) {
+                Timber.d("requestBody match Mon");
+
+                setWeekDayList("Monday", date);
+                break;
+            } else  if(tempDay.contains("Tue") && SessionManager.getTuesday().equals("y")) {
+                Timber.d("requestBody match Tue");
+
+                setWeekDayList("Tuesday", date);
+                break;
+            } else  if(tempDay.contains("Wed") && SessionManager.getWednesday().equals("y")) {
+                Timber.d("requestBody match Wed");
+
+                setWeekDayList("Wednesday", date);
+                break;
+            } else  if(tempDay.contains("Thu") && SessionManager.getThursday().equals("y")) {
+                Timber.d("requestBody match Thu");
+
+                setWeekDayList("Thursday", date);
+                break;
+            } else  if(tempDay.contains("Fri") && SessionManager.getFriday().equals("y")) {
+                Timber.d("requestBody match Fri");
+
+                setWeekDayList("Friday", date);
+                break;
+            } else {
+                break;
+            }
+        }
+    }
+
+    private void getSystemDate() {
+
+        Date dt = new Date();
+        Timber.d("requestBody %s", dt.toString().substring(0, 3));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dt);
+        calendar.add(Calendar.DATE, 1);
+        dt = calendar.getTime();
+//        Timber.d("requestBody Day 3:     %s", dt);
+
+
+//        checkDate(dt.toString().substring(0, 3));
+        Timber.d("requestBody-------------------------------------------");
+        for( int i = 1 ; i < 7 ; i++) {
+            checkDate(dt);
+            calendar.add(Calendar.DATE, 1);
+            dt = calendar.getTime();
+        }
+        Timber.d("requestBody-------------------------------------------");
     }
 
     private void initWeekDayList() {
